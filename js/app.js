@@ -1,6 +1,6 @@
 (() => {
     "use strict";
-    const modules_flsModules = {};
+    const flsModules = {};
     function isWebp() {
         function testWebP(callback) {
             let webP = new Image;
@@ -129,11 +129,6 @@
             }
         }));
     }
-    function functions_FLS(message) {
-        setTimeout((() => {
-            if (window.FLS) console.log(message);
-        }), 0);
-    }
     function removeClasses(array, className) {
         for (var i = 0; i < array.length; i++) array[i].classList.remove(className);
     }
@@ -243,11 +238,11 @@
                     const checkbox = checkboxes[index];
                     checkbox.checked = false;
                 }
-                if (modules_flsModules.select) {
+                if (flsModules.select) {
                     let selects = form.querySelectorAll(".select");
                     if (selects.length) for (let index = 0; index < selects.length; index++) {
                         const select = selects[index].querySelector("select");
-                        modules_flsModules.select.selectBuild(select);
+                        flsModules.select.selectBuild(select);
                     }
                 }
             }), 0);
@@ -292,10 +287,7 @@
             this._this = this;
             if (this.config.init) {
                 const selectItems = data ? document.querySelectorAll(data) : document.querySelectorAll("select");
-                if (selectItems.length) {
-                    this.selectsInit(selectItems);
-                    this.setLogging(`Прокинувся, построїв селектов: (${selectItems.length})`);
-                } else this.setLogging("Сплю, немає жодного select");
+                if (selectItems.length) this.selectsInit(selectItems);
             }
         }
         getSelectClass(className) {
@@ -612,11 +604,8 @@
                 }
             }));
         }
-        setLogging(message) {
-            this.config.logging ? functions_FLS(`[select]: ${message} `) : null;
-        }
     }
-    modules_flsModules.select = new SelectConstructor({});
+    flsModules.select = new SelectConstructor({});
     function ssr_window_esm_isObject(obj) {
         return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
     }
@@ -6553,7 +6542,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 })
             });
         }));
-        modules_flsModules.gallery = galleyItems;
+        flsModules.gallery = galleyItems;
     }
     class DynamicAdapt {
         constructor(type) {
